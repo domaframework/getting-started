@@ -18,7 +18,12 @@ import org.seasar.doma.jdbc.tx.LocalTransactionDataSource;
 import org.seasar.doma.jdbc.tx.LocalTransactionManager;
 import org.seasar.doma.jdbc.tx.TransactionManager;
 
-public class TestEnvironment implements BeforeAllCallback, AfterAllCallback, BeforeEachCallback, AfterEachCallback, ParameterResolver {
+public class TestEnvironment
+    implements BeforeAllCallback,
+        AfterAllCallback,
+        BeforeEachCallback,
+        AfterEachCallback,
+        ParameterResolver {
 
   private final LocalTransaction localTransaction;
   private final TransactionManager transactionManager;
@@ -45,7 +50,7 @@ public class TestEnvironment implements BeforeAllCallback, AfterAllCallback, Bef
   public void afterAll(ExtensionContext context) {
     transactionManager.required(appDao::drop);
   }
-  
+
   @Override
   public void beforeEach(ExtensionContext context) {
     localTransaction.begin();

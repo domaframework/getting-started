@@ -1,13 +1,12 @@
 package boilerplate.java8;
 
+import java.util.Objects;
+import javax.sql.DataSource;
 import org.seasar.doma.jdbc.Config;
 import org.seasar.doma.jdbc.JdbcLogger;
 import org.seasar.doma.jdbc.dialect.Dialect;
 import org.seasar.doma.jdbc.tx.LocalTransactionDataSource;
 import org.seasar.doma.jdbc.tx.TransactionManager;
-
-import javax.sql.DataSource;
-import java.util.Objects;
 
 public class DbConfig implements Config {
 

@@ -11,22 +11,19 @@ import org.seasar.doma.Version;
 @Entity(metamodel = @Metamodel)
 public class Employee {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(sequence = "EMPLOYEE_SEQ")
-    public Integer id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.SEQUENCE)
+  @SequenceGenerator(sequence = "EMPLOYEE_SEQ")
+  public Integer id;
 
-    public String name;
+  public String name;
 
-    public Integer age;
+  public Integer age;
 
-    @Version
-    public Integer version;
+  @Version public Integer version;
 
-    @Override
-    public String toString() {
-        return "Employee [id=" + id + ", name=" + name + ", age=" + age
-                + ", version=" + version + "]";
-    }
-
+  @Override
+  public String toString() {
+    return "Employee [id=" + id + ", name=" + name + ", age=" + age + ", version=" + version + "]";
+  }
 }

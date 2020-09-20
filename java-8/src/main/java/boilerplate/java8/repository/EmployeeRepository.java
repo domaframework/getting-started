@@ -2,11 +2,10 @@ package boilerplate.java8.repository;
 
 import boilerplate.java8.entity.Employee;
 import boilerplate.java8.entity.Employee_;
-import org.seasar.doma.jdbc.Config;
-import org.seasar.doma.jdbc.criteria.Entityql;
-
 import java.util.List;
 import java.util.Objects;
+import org.seasar.doma.jdbc.Config;
+import org.seasar.doma.jdbc.criteria.Entityql;
 
 public class EmployeeRepository {
 

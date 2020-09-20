@@ -1,6 +1,7 @@
 plugins {
     base
     id("com.diffplug.eclipse.apt") version "3.25.0" apply false
+    id("com.diffplug.spotless") version "5.5.2" apply false
     id("org.seasar.doma.compile") version "1.1.0" apply false
 }
 
@@ -14,6 +15,7 @@ allprojects {
 subprojects {
     apply(plugin = "java")
     apply(plugin = "com.diffplug.eclipse.apt")
+    apply(plugin = "com.diffplug.spotless")
     apply(plugin = "org.seasar.doma.compile")
 
     tasks {
@@ -23,6 +25,10 @@ subprojects {
 
         withType<Test>() {
             useJUnitPlatform()
+        }
+
+        named("build") {
+            dependsOn("spotlessApply")
         }
     }
     
@@ -52,6 +58,12 @@ subprojects {
                     node.appendNode("classpathentry", mapOf("kind" to "src", "output" to "bin/main", "path" to ".apt_generated"))
                 }
             }
+        }
+    }
+
+    configure<com.diffplug.gradle.spotless.SpotlessExtension> {
+        java {
+            googleJavaFormat("1.9")
         }
     }
 }
