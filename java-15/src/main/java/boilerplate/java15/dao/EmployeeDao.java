@@ -15,11 +15,11 @@ public interface EmployeeDao {
   @Sql(
       """
         select
-            /*%expand*/*
+          /*%expand*/*
         from
-            employee
+          employee
         order by
-            id
+          id
         """)
   @Select
   List<Employee> selectAll();
