@@ -12,7 +12,7 @@ import org.junit.jupiter.api.extension.ParameterResolutionException;
 import org.junit.jupiter.api.extension.ParameterResolver;
 import org.seasar.doma.jdbc.Config;
 import org.seasar.doma.jdbc.JdbcLogger;
-import org.seasar.doma.jdbc.UtilLoggingJdbcLogger;
+import org.seasar.doma.jdbc.Slf4jJdbcLogger;
 import org.seasar.doma.jdbc.dialect.Dialect;
 import org.seasar.doma.jdbc.dialect.H2Dialect;
 import org.seasar.doma.jdbc.tx.LocalTransaction;
@@ -36,7 +36,7 @@ public class TestEnvironment
     Dialect dialect = new H2Dialect();
     LocalTransactionDataSource dataSource =
         new LocalTransactionDataSource("jdbc:h2:mem:tutorial;DB_CLOSE_DELAY=-1", "sa", null);
-    JdbcLogger jdbcLogger = new UtilLoggingJdbcLogger();
+    JdbcLogger jdbcLogger = new Slf4jJdbcLogger();
     localTransaction = dataSource.getLocalTransaction(jdbcLogger);
     transactionManager = new LocalTransactionManager(localTransaction);
     config = new DbConfig(dialect, dataSource, jdbcLogger, transactionManager);

@@ -36,6 +36,8 @@ subprojects {
         val domaVersion : String by project
         "annotationProcessor"("org.seasar.doma:doma-processor:${domaVersion}")
         "implementation"("org.seasar.doma:doma-core:${domaVersion}")
+        "implementation"("org.seasar.doma:doma-slf4j:${domaVersion}")
+        "implementation"("ch.qos.logback:logback-classic:1.2.3")
         "runtimeOnly"("com.h2database:h2:1.4.200")
         "testImplementation"("org.junit.jupiter:junit-jupiter-api:5.7.0")
         "testRuntimeOnly"("org.junit.jupiter:junit-jupiter-engine:5.7.0")
