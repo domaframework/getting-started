@@ -1,5 +1,9 @@
 plugins {
-    java
+    application
+}
+
+application {
+    mainClass.set("boilerplate.java15.Main")
 }
 
 java {
