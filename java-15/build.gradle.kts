@@ -8,12 +8,12 @@ application {
 
 java {
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(17))
+        languageVersion.set(JavaLanguageVersion.of(15))
     }
 }
 
 eclipse {
     jdt {
-        javaRuntimeName = "JavaSE-17"
+        javaRuntimeName = "JavaSE-15"
     }
 }

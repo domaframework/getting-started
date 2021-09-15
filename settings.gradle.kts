@@ -1,3 +1,3 @@
 rootProject.name = "getting-started"
 include("java-8")
-include("java-17")
+include("java-15")
