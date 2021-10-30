@@ -6,12 +6,12 @@ import boilerplate.java8.entity.Employee;
 import boilerplate.java8.repository.EmployeeRepository;
 import org.seasar.doma.jdbc.Config;
 import org.seasar.doma.jdbc.JdbcLogger;
-import org.seasar.doma.jdbc.Slf4jJdbcLogger;
 import org.seasar.doma.jdbc.dialect.Dialect;
 import org.seasar.doma.jdbc.dialect.H2Dialect;
 import org.seasar.doma.jdbc.tx.LocalTransactionDataSource;
 import org.seasar.doma.jdbc.tx.LocalTransactionManager;
 import org.seasar.doma.jdbc.tx.TransactionManager;
+import org.seasar.doma.slf4j.Slf4jJdbcLogger;
 
 public class Main {
 

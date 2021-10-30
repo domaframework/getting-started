@@ -3,10 +3,10 @@ package boilerplate.java15;
 import boilerplate.java15.dao.AppDaoImpl;
 import boilerplate.java15.repository.EmployeeRepository;
 import org.seasar.doma.jdbc.Config;
-import org.seasar.doma.jdbc.Slf4jJdbcLogger;
 import org.seasar.doma.jdbc.dialect.H2Dialect;
 import org.seasar.doma.jdbc.tx.LocalTransactionDataSource;
 import org.seasar.doma.jdbc.tx.LocalTransactionManager;
+import org.seasar.doma.slf4j.Slf4jJdbcLogger;
 
 public class Main {
 
