@@ -1,7 +1,7 @@
 plugins {
     base
     id("com.diffplug.eclipse.apt") version "3.37.1" apply false
-    id("com.diffplug.spotless") version "6.7.2" apply false
+    id("com.diffplug.spotless") version "6.8.0" apply false
     id("org.seasar.doma.compile") version "1.1.0" apply false
 }
 
