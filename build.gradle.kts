@@ -1,6 +1,6 @@
 plugins {
     base
-    id("com.diffplug.eclipse.apt") version "3.37.1" apply false
+    id("com.diffplug.eclipse.apt") version "3.37.2" apply false
     id("com.diffplug.spotless") version "6.9.0" apply false
     id("org.domaframework.doma.compile") version "2.0.0" apply false
 }
