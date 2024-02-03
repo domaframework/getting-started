@@ -30,6 +30,18 @@ subprojects {
         named("build") {
             dependsOn("spotlessApply")
         }
+
+        named("eclipse") {
+            doFirst {
+                val prefs = file(".settings/org.eclipse.buildship.core.prefs")
+                if(!prefs.exists()){
+                    prefs.appendText("""
+                            connection.project.dir=
+                            eclipse.preferences.version=1
+                        """.trimIndent())
+                }
+            }
+        }
     }
     
     dependencies {
@@ -61,11 +73,15 @@ subprojects {
                 }
             }
         }
+        project {
+            buildCommand("org.eclipse.buildship.core.gradleprojectbuilder")
+            natures("org.eclipse.buildship.core.gradleprojectnature")
+        }
     }
 
     configure<com.diffplug.gradle.spotless.SpotlessExtension> {
         java {
-            googleJavaFormat("1.9")
+            googleJavaFormat("1.19.2")
         }
     }
 }
