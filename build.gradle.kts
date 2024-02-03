@@ -30,6 +30,18 @@ subprojects {
         named("build") {
             dependsOn("spotlessApply")
         }
+
+        named("eclipse") {
+            doFirst {
+                val prefs = file(".settings/org.eclipse.buildship.core.prefs")
+                if(!prefs.exists()){
+                    prefs.appendText("""
+                            connection.project.dir=
+                            eclipse.preferences.version=1
+                        """.trimIndent())
+                }
+            }
+        }
     }
     
     dependencies {
@@ -60,6 +72,10 @@ subprojects {
                     node.appendNode("classpathentry", mapOf("kind" to "src", "output" to "bin/main", "path" to ".apt_generated"))
                 }
             }
+        }
+        project {
+            buildCommand("org.eclipse.buildship.core.gradleprojectbuilder")
+            natures("org.eclipse.buildship.core.gradleprojectnature")
         }
     }
 
