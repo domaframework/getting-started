@@ -1,8 +1,8 @@
 plugins {
-    base
-    id("com.diffplug.eclipse.apt") version "3.44.0" apply false
-    id("com.diffplug.spotless") version "6.25.0" apply false
-    id("org.domaframework.doma.compile") version "2.0.0" apply false
+    java
+    id("com.diffplug.eclipse.apt") version "3.44.0"
+    id("com.diffplug.spotless") version "6.25.0"
+    id("org.domaframework.doma.compile") version "2.0.0"
 }
 
 allprojects {
@@ -23,7 +23,7 @@ subprojects {
             options.encoding = "UTF-8"
         }
 
-        withType<Test>() {
+        withType<Test> {
             useJUnitPlatform()
         }
 
@@ -46,16 +46,16 @@ subprojects {
     
     dependencies {
         val domaVersion : String by project
-        "annotationProcessor"("org.seasar.doma:doma-processor:${domaVersion}")
-        "implementation"("org.seasar.doma:doma-core:${domaVersion}")
-        "implementation"("org.seasar.doma:doma-slf4j:${domaVersion}")
-        "runtimeOnly"("ch.qos.logback:logback-classic:1.2.11")
-        "runtimeOnly"("com.h2database:h2:2.2.224")
-        "testImplementation"("org.junit.jupiter:junit-jupiter-api:5.10.2")
-        "testRuntimeOnly"("org.junit.jupiter:junit-jupiter-engine:5.10.2")
+        annotationProcessor("org.seasar.doma:doma-processor:${domaVersion}")
+        implementation("org.seasar.doma:doma-core:${domaVersion}")
+        implementation("org.seasar.doma:doma-slf4j:${domaVersion}")
+        runtimeOnly("ch.qos.logback:logback-classic:1.2.11")
+        runtimeOnly("com.h2database:h2:2.2.224")
+        testImplementation("org.junit.jupiter:junit-jupiter-api:5.10.2")
+        testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.10.2")
     }
     
-    configure<org.gradle.plugins.ide.eclipse.model.EclipseModel> {
+    eclipse {
         classpath {
             file {
                 whenMerged {
@@ -79,7 +79,7 @@ subprojects {
         }
     }
 
-    configure<com.diffplug.gradle.spotless.SpotlessExtension> {
+    spotless {
         java {
             googleJavaFormat("1.19.2")
         }
