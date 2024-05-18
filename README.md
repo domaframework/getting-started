@@ -7,21 +7,20 @@ See [Getting started](https://doma.readthedocs.io/en/latest/getting-started/).
 
 [![Java CI with Gradle](https://github.com/domaframework/getting-started/workflows/Java%20CI%20with%20Gradle/badge.svg)](https://github.com/domaframework/getting-started/actions?query=workflow%3A%22Java+CI+with+Gradle%22)
 
-Notice
-------
+ Import into your IDE
+---------------------
 
-For Eclipse users, to import this project into Eclipse, adhere to the instructions outlined below.
+Import this project into your IDE as a Gradle Project.
+This project has been confirmed to work on the following IDEs.
 
-**1. Run the Gradle command:**
+- Eclipse 2023-09 (4.29.0)
+- IntelliJ IDEA 2023.3.4 (Community Edition)
+
+Build
+-----
+
+You can build this project with Gradle.
 
 ```sh
-$ ./gradlew cleanEclipse eclipse
+$ ./gradlew build
 ```
-
-**2. Navigate through the Eclipse menu and select:**
-
-```
-File > Import > General > Existing Projects into Workspace
-```
-
-It is important not to choose `File > Import > Gradle > Existing Gradle Project`.

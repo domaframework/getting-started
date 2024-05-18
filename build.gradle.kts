@@ -1,3 +1,5 @@
+import com.diffplug.gradle.eclipse.apt.Factorypath
+
 plugins {
     java
     id("com.diffplug.eclipse.apt") version "3.44.0"
@@ -30,18 +32,6 @@ subprojects {
         named("build") {
             dependsOn("spotlessApply")
         }
-
-        named("eclipse") {
-            doFirst {
-                val prefs = file(".settings/org.eclipse.buildship.core.prefs")
-                if(!prefs.exists()){
-                    prefs.appendText("""
-                            connection.project.dir=
-                            eclipse.preferences.version=1
-                        """.trimIndent())
-                }
-            }
-        }
     }
     
     dependencies {
@@ -60,16 +50,12 @@ subprojects {
             file {
                 whenMerged {
                     val classpath = this as org.gradle.plugins.ide.eclipse.model.Classpath
-                    classpath.entries.removeAll {
-                        when (it) {
-                            is org.gradle.plugins.ide.eclipse.model.Output -> it.path == ".apt_generated"
-                            else -> false
-                        }
+                    val folder = org.gradle.plugins.ide.eclipse.model.SourceFolder(".apt_generated", "bin/main")
+                    classpath.entries.add(folder)
+                    val dir = file(folder.path)
+                    if (!dir.exists()) {
+                        dir.mkdir()
                     }
-                }
-                withXml {
-                    val node = asNode()
-                    node.appendNode("classpathentry", mapOf("kind" to "src", "output" to "bin/main", "path" to ".apt_generated"))
                 }
             }
         }
@@ -77,6 +63,8 @@ subprojects {
             buildCommand("org.eclipse.buildship.core.gradleprojectbuilder")
             natures("org.eclipse.buildship.core.gradleprojectnature")
         }
+        // Reset all Eclipse settings when "Refresh Gradle Project" is executed
+        synchronizationTasks("cleanEclipse", "eclipse")
     }
 
     spotless {
