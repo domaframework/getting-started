@@ -24,7 +24,8 @@ public interface AppDao {
   @Script
   void create();
 
-  @Sql("""
+  @Sql(
+      """
         drop sequence employee_seq;
         drop table employee;
         """)
