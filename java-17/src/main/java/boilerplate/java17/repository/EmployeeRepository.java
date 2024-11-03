@@ -5,39 +5,39 @@ import boilerplate.java17.entity.Employee_;
 import java.util.List;
 import java.util.Objects;
 import org.seasar.doma.jdbc.Config;
-import org.seasar.doma.jdbc.criteria.Entityql;
+import org.seasar.doma.jdbc.criteria.QueryDsl;
 
 public class EmployeeRepository {
 
-  private final Entityql entityql;
+  private final QueryDsl queryDsl;
 
   public EmployeeRepository(Config config) {
     Objects.requireNonNull(config);
-    this.entityql = new Entityql(config);
+    this.queryDsl = new QueryDsl(config);
   }
 
   public List<Employee> selectAll() {
     var e = new Employee_();
-    return entityql.from(e).fetch();
+    return queryDsl.from(e).fetch();
   }
 
   public Employee selectById(Integer id) {
     var e = new Employee_();
-    return entityql.from(e).where(c -> c.eq(e.id, id)).fetchOne();
+    return queryDsl.from(e).where(c -> c.eq(e.id, id)).fetchOne();
   }
 
   public void insert(Employee employee) {
     var e = new Employee_();
-    entityql.insert(e, employee).execute();
+    queryDsl.insert(e).single(employee).execute();
   }
 
   public void update(Employee employee) {
     var e = new Employee_();
-    entityql.update(e, employee).execute();
+    queryDsl.update(e).single(employee).execute();
   }
 
   public void delete(Employee employee) {
     var e = new Employee_();
-    entityql.delete(e, employee).execute();
+    queryDsl.delete(e).single(employee).execute();
   }
 }
