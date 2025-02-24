@@ -11,8 +11,7 @@ import org.junit.jupiter.api.extension.ParameterContext;
 import org.junit.jupiter.api.extension.ParameterResolutionException;
 import org.junit.jupiter.api.extension.ParameterResolver;
 import org.seasar.doma.jdbc.Config;
-import org.seasar.doma.jdbc.dialect.H2Dialect;
-import org.seasar.doma.jdbc.tx.LocalTransactionDataSource;
+import org.seasar.doma.jdbc.SimpleConfig;
 import org.seasar.doma.jdbc.tx.LocalTransactionManager;
 import org.seasar.doma.slf4j.Slf4jJdbcLogger;
 
@@ -24,16 +23,15 @@ public class TestEnvironment
         ParameterResolver {
 
   private final LocalTransactionManager transactionManager;
-  private final Config config;
+  private final SimpleConfig config;
   private final AppDao appDao;
 
   public TestEnvironment() {
-    var dialect = new H2Dialect();
-    var dataSource =
-        new LocalTransactionDataSource("jdbc:h2:mem:tutorial;DB_CLOSE_DELAY=-1", "sa", null);
-    var jdbcLogger = new Slf4jJdbcLogger();
-    transactionManager = new LocalTransactionManager(dataSource, jdbcLogger);
-    config = new DbConfig(dialect, dataSource, jdbcLogger, transactionManager);
+    config =
+        SimpleConfig.builder("jdbc:h2:mem:tutorial;DB_CLOSE_DELAY=-1", "sa", null)
+            .jdbcLogger(new Slf4jJdbcLogger())
+            .build();
+    transactionManager = config.getLocalTransactionManager();
     appDao = new AppDaoImpl(config);
   }
 
