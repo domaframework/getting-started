@@ -4,7 +4,7 @@ plugins {
     java
     id("com.diffplug.eclipse.apt") version "4.4.0"
     id("com.diffplug.spotless") version "7.2.1"
-    id("org.domaframework.doma.compile") version "4.0.2"
+    id("org.domaframework.doma.compile") version "4.0.3"
 }
 
 allprojects {
