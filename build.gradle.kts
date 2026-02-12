@@ -3,7 +3,7 @@ import com.diffplug.gradle.eclipse.apt.Factorypath
 plugins {
     java
     id("com.diffplug.eclipse.apt") version "4.4.1"
-    id("com.diffplug.spotless") version "7.2.1"
+    id("com.diffplug.spotless") version "8.2.1"
     id("org.domaframework.doma.compile") version "4.0.3"
 }
 
